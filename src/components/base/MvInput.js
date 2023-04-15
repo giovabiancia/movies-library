@@ -9,6 +9,9 @@ const Input = styled.input`
   border-radius: 5px;
   font-size: 16px;
   width: 300px;
+  background-color: ${({ isWriting }) =>
+    isWriting ? "transparent" : "#e7e7e7"};
+  transition: all 0.3s ease-in-out;
 `;
 
 const IconWrapper = styled.button`
@@ -20,16 +23,16 @@ const IconWrapper = styled.button`
   justify-content: center;
   width: 30px;
   height: 30px;
-  cursor: ${({ clickable }) => (clickable ? "pointer" : "default")};
+  cursor: ${({ isWriting }) => (isWriting ? "pointer" : "default")};
   border: none;
-  background-color: ${({ clickable }) =>
-    clickable ? "#d3d3d3" : "transparent"};
+  background-color: ${({ isWriting }) =>
+    isWriting ? "#d3d3d3" : "transparent"};
   transition: all 0.3s ease-in-out;
   border-radius: 50%;
 
   &:hover {
-    background-color: ${({ clickable }) =>
-      clickable ? "#f3f3f3" : "transparent"};
+    background-color: ${({ isWriting }) =>
+      isWriting ? "#f3f3f3" : "transparent"};
     border-radius: 50%;
   }
 
@@ -65,6 +68,7 @@ export default function MvInput({
         onChange={handleChange}
         disabled={disabled}
         onKeyDown={(e) => e.key === "Enter" && onKeyPress()}
+        isWriting={hasInputValue}
       />
       {isLoading ? (
         <MvLoader
@@ -76,7 +80,7 @@ export default function MvInput({
           pxSize={15}
         />
       ) : (
-        <IconWrapper clickable={hasInputValue} onClick={onKeyPress}>
+        <IconWrapper isWriting={hasInputValue} onClick={onKeyPress}>
           <i className="fas fa-search"></i>
         </IconWrapper>
       )}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import MvInput from "./base/MvInput";
+import { useMovie } from "../hooks/useMovie";
 
 const InputContainer = styled.div`
   display: flex;
@@ -8,15 +9,11 @@ const InputContainer = styled.div`
   align-items: center;
 `;
 
-const SearchResult = styled.div`
-  margin-top: 20px;
-  font-size: 18px;
-`;
-
 const SearchField = () => {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+
+  const { searchMovieListByWord } = useMovie();
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -24,11 +21,13 @@ const SearchField = () => {
 
   const handleSearchClick = () => {
     setLoading(true);
-    fetch(`https://api.tvmaze.com/search/shows?q=${inputValue}`)
-      .then((response) => response.json())
-      .then((data) => {
+    searchMovieListByWord(inputValue)
+      .then((response) => {
         setLoading(false);
-        setSearchResults(data);
+        if (response.status === 200) {
+          console.log(response);
+          //TODO setta nel contesto i risultati
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -44,11 +43,6 @@ const SearchField = () => {
         value={inputValue}
         onKeyPress={() => handleSearchClick()}
       ></MvInput>
-
-      {searchResults.length > 0 &&
-        searchResults.map((result) => (
-          <SearchResult key={result.show.id}>{result.show.name}</SearchResult>
-        ))}
     </InputContainer>
   );
 };

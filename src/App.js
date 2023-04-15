@@ -1,12 +1,17 @@
-import SearchField from "./components/SearchField";
-import SearchInput from "./components/SearchField";
-import MvInput from "./components/base/MvInput";
+import MovieListPage from "./pages/MovieListPage";
+import MovieDetailPage from "./pages/MovieDetailPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <SearchField></SearchField>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<MovieListPage />}></Route>
+          <Route path="/movie/:id" element={<MovieDetailPage />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
