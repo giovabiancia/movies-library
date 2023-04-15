@@ -45,6 +45,8 @@ export default function MvInput({
   placeholder,
   disabled,
   isLoading,
+  handleSubmit,
+  onKeyPress,
 }) {
   const [value, setValue] = useState(inputValue || "");
   const hasInputValue = value && value.length > 0;
@@ -62,17 +64,19 @@ export default function MvInput({
         value={value}
         onChange={handleChange}
         disabled={disabled}
+        onKeyDown={(e) => e.key === "Enter" && onKeyPress()}
       />
       {isLoading ? (
         <MvLoader
           css={`
             position: absolute;
-            top: 5px;
-            right: 50px;
+            top: 8px;
+            right: 10px;
           `}
+          pxSize={15}
         />
       ) : (
-        <IconWrapper clickable={hasInputValue}>
+        <IconWrapper clickable={hasInputValue} onClick={onKeyPress}>
           <i className="fas fa-search"></i>
         </IconWrapper>
       )}
@@ -87,6 +91,8 @@ MvInput.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
+  handleSubmit: PropTypes.func,
+  onKeyPress: PropTypes.func,
 };
 
 MvInput.defaultProps = {
@@ -96,4 +102,6 @@ MvInput.defaultProps = {
   placeholder: "placeholder",
   disabled: false,
   isLoading: false,
+  handleSubmit: () => console.warn("Definire un handle submit"),
+  onKeyPress: () => console.warn("Definire un handle submit"),
 };

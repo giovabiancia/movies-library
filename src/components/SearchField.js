@@ -39,11 +39,11 @@ const SearchField = () => {
   return (
     <InputContainer>
       <MvInput
-        isLoading={false}
+        isLoading={loading}
         onChange={handleInputChange}
         value={inputValue}
+        onKeyPress={() => handleSearchClick()}
       ></MvInput>
-      <button onClick={handleSearchClick}>Search</button>
 
       {searchResults.length > 0 &&
         searchResults.map((result) => (
