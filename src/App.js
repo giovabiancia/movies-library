@@ -2,6 +2,7 @@ import MovieListPage from "./pages/MovieListPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MovieProvider } from "./contexts/MovieContext";
+import "./index.css";
 
 function App() {
   return (

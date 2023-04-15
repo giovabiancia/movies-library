@@ -12,10 +12,9 @@ const InputContainer = styled.div`
 
 const SearchField = () => {
   const [inputValue, setInputValue] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const { searchMovieListByWord } = useMovie();
-  const { setMovies } = useContext(MovieContext);
+  const { setMovies, loading, setLoading, setError } = useContext(MovieContext);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -27,11 +26,13 @@ const SearchField = () => {
       .then((response) => {
         setLoading(false);
         if (response.status === 200) {
+          console.log(response.data);
           setMovies(response.data);
         }
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message);
         setLoading(false);
       });
   };
@@ -39,6 +40,7 @@ const SearchField = () => {
   return (
     <InputContainer>
       <MvInput
+        placeholder="Search"
         isLoading={loading}
         onChange={handleInputChange}
         value={inputValue}

@@ -8,7 +8,7 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 300px;
+  max-width: 300px;
   background-color: ${({ isWriting }) =>
     isWriting ? "transparent" : "#e7e7e7"};
   transition: all 0.3s ease-in-out;

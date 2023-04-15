@@ -2,8 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 export const MovieContext = createContext();
 
 export const MovieProvider = (props) => {
-  const [loading, setLoading] = useState(true);
-  const [showError, setshowError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,9 @@ export const MovieProvider = (props) => {
   }, []);
 
   return (
-    <MovieContext.Provider value={(movies, setMovies)}>
+    <MovieContext.Provider
+      value={{ movies, setMovies, loading, setLoading, error, setError }}
+    >
       {props.children}
     </MovieContext.Provider>
   );
