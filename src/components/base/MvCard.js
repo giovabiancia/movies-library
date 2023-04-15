@@ -14,8 +14,13 @@ const CardImage = styled.img`
   border-radius: 5%;
   max-height: 300px;
   object-fit: cover;
-  transition: transform 0.2s ease-in-out;
+  transition: box-shadow 0.2s;
+
   cursor: pointer;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  }
 `;
 
 const CardTitle = styled.h2`
