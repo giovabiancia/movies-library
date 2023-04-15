@@ -11,6 +11,31 @@ const Input = styled.input`
   width: 300px;
 `;
 
+const IconWrapper = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: ${({ clickable }) => (clickable ? "pointer" : "default")};
+  border: none;
+  background-color: ${({ clickable }) => (clickable ? "#fff" : "transparent")};
+  transition: all 0.3s ease-in-out;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: ${({ clickable }) =>
+      clickable ? "#f3f3f3" : "transparent"};
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 export default function MvInput({
   inputValue,
   onChange,
@@ -19,8 +44,10 @@ export default function MvInput({
   disabled,
   isLoading,
 }) {
+  const hasInputValue = inputValue && inputValue.trim().length > 0;
+
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <Input
         type={type}
         placeholder={placeholder}
@@ -28,8 +55,20 @@ export default function MvInput({
         onChange={onChange}
         disabled={disabled}
       />
-      {isLoading && <MvLoader></MvLoader>}
-    </>
+      {isLoading ? (
+        <MvLoader
+          css={`
+            position: absolute;
+            top: 5px;
+            right: 50px;
+          `}
+        />
+      ) : (
+        <IconWrapper clickable={hasInputValue}>
+          <i className="fas fa-search"></i>
+        </IconWrapper>
+      )}
+    </div>
   );
 }
 

@@ -38,7 +38,11 @@ const SearchField = () => {
 
   return (
     <InputContainer>
-      <MvInput></MvInput>
+      <MvInput
+        isLoading={false}
+        onChange={handleInputChange}
+        value={inputValue}
+      ></MvInput>
       <button onClick={handleSearchClick}>Search</button>
 
       {searchResults.length > 0 &&
