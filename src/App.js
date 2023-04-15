@@ -1,17 +1,20 @@
 import MovieListPage from "./pages/MovieListPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { MovieProvider } from "./contexts/MovieContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
-          <Route index element={<MovieListPage />}></Route>
-          <Route path="/movie/:id" element={<MovieDetailPage />}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <MovieProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route index element={<MovieListPage />}></Route>
+            <Route path="/movie/:id" element={<MovieDetailPage />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </MovieProvider>
   );
 }
 

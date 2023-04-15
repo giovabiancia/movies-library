@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import MvInput from "./base/MvInput";
 import { useMovie } from "../hooks/useMovie";
+import { MovieContext } from "../contexts/MovieContext";
 
 const InputContainer = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const SearchField = () => {
   const [loading, setLoading] = useState(false);
 
   const { searchMovieListByWord } = useMovie();
+  const { setMovies } = useContext(MovieContext);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -25,8 +27,7 @@ const SearchField = () => {
       .then((response) => {
         setLoading(false);
         if (response.status === 200) {
-          console.log(response);
-          //TODO setta nel contesto i risultati
+          setMovies(response.data);
         }
       })
       .catch((error) => {
