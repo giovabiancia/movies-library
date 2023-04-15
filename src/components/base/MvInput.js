@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import MvLoader from "./MvLoader";
 
 const Input = styled.input`
   padding: 10px;
@@ -19,13 +20,16 @@ export default function MvInput({
   isLoading,
 }) {
   return (
-    <Input
-      type={type}
-      placeholder={placeholder}
-      value={inputValue}
-      onChange={onChange}
-      disabled={disabled}
-    />
+    <>
+      <Input
+        type={type}
+        placeholder={placeholder}
+        value={inputValue}
+        onChange={onChange}
+        disabled={disabled}
+      />
+      {isLoading && <MvLoader></MvLoader>}
+    </>
   );
 }
 
