@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import MvLoader from "./MvLoader";
@@ -22,13 +22,15 @@ const IconWrapper = styled.button`
   height: 30px;
   cursor: ${({ clickable }) => (clickable ? "pointer" : "default")};
   border: none;
-  background-color: ${({ clickable }) => (clickable ? "#fff" : "transparent")};
+  background-color: ${({ clickable }) =>
+    clickable ? "#d3d3d3" : "transparent"};
   transition: all 0.3s ease-in-out;
   border-radius: 50%;
 
   &:hover {
     background-color: ${({ clickable }) =>
       clickable ? "#f3f3f3" : "transparent"};
+    border-radius: 50%;
   }
 
   &:focus {
@@ -44,15 +46,21 @@ export default function MvInput({
   disabled,
   isLoading,
 }) {
-  const hasInputValue = inputValue && inputValue.trim().length > 0;
+  const [value, setValue] = useState(inputValue || "");
+  const hasInputValue = value && value.length > 0;
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    onChange(event);
+  };
 
   return (
     <div style={{ position: "relative" }}>
       <Input
         type={type}
         placeholder={placeholder}
-        value={inputValue}
-        onChange={onChange}
+        value={value}
+        onChange={handleChange}
         disabled={disabled}
       />
       {isLoading ? (
