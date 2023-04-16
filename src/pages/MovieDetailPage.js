@@ -41,8 +41,10 @@ export default function MovieDetailPage(props) {
           css={`
             margin: 20px;
             cursor: pointer;
+            position:absolute;
             z-index:1;
             color: white;
+            opacity: 0.6;
             &:hover {
               background-color:#e7e7e7;
               border-radius: 50%;
