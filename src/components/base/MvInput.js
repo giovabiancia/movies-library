@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import MvLoader from "./MvLoader";
+import MvButtonIcon from "./MvButtonIcon";
 
 const Input = styled.input`
   padding: 10px;
@@ -26,13 +27,13 @@ const IconWrapper = styled.button`
   cursor: ${({ isWriting }) => (isWriting ? "pointer" : "default")};
   border: none;
   background-color: ${({ isWriting }) =>
-    isWriting ? "#d3d3d3" : "transparent"};
+    isWriting ? "transparent" : "#e7e7e7"};
   transition: all 0.3s ease-in-out;
   border-radius: 50%;
 
   &:hover {
     background-color: ${({ isWriting }) =>
-      isWriting ? "#f3f3f3" : "transparent"};
+      isWriting ? "#e7e7e7" : "transparent"};
     border-radius: 50%;
   }
 
@@ -80,9 +81,22 @@ export default function MvInput({
           pxSize={15}
         />
       ) : (
-        <IconWrapper isWriting={hasInputValue} onClick={onKeyPress}>
-          <i className="fas fa-search"></i>
-        </IconWrapper>
+        <MvButtonIcon
+          css={`cursor:
+            ${hasInputValue ? "pointer" : "default"};
+            border: none;
+            background-color:
+              ${hasInputValue ? "transparent" : "#e7e7e7"};
+            transition: all 0.3s ease-in-out;
+            border-radius: 50%;
+
+            &:hover {
+              background-color:
+                ${hasInputValue ? "#e7e7e7" : "transparent"};
+              border-radius: 50%;`}
+          onClick={onKeyPress}
+          iconClass="fas fa-search"
+        ></MvButtonIcon>
       )}
     </div>
   );

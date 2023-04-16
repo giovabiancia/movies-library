@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import defaultImage from "../../imgs/movieDefault.png";
 
 const CardContainer = styled.div`
   display: flex;
@@ -12,11 +13,18 @@ const CardImage = styled.img`
   width: 100%;
   max-width: 400px;
   border-radius: 5%;
-  max-height: 300px;
+
   object-fit: cover;
   transition: box-shadow 0.2s;
 
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    height: 350px;
+  }
+  @media (max-width: 768px) {
+    height: 200px;
+  }
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
@@ -24,6 +32,7 @@ const CardImage = styled.img`
 `;
 
 const CardTitle = styled.h2`
+  color: black;
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 2px;
@@ -44,7 +53,7 @@ const CardDetail = styled.span`
 export default function MvCard({ image, title, category, year, country }) {
   return (
     <CardContainer>
-      <CardImage src={image} alt={title} />
+      <CardImage src={image ? image : defaultImage} alt={title} />
       <CardTitle>{title}</CardTitle>
       <CardDetails>
         <CardDetail>{category}</CardDetail>

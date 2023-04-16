@@ -6,6 +6,7 @@ import MvCard from "../components/base/MvCard";
 import MvRow from "../components/base/MvRow";
 import MvCol from "../components/base/MvCol";
 import MvCardSkeleton from "../components/base/MvCardSkeleton";
+import { Link } from "react-router-dom";
 
 export default function MovieListPage() {
   const { movies, loading } = useContext(MovieContext);
@@ -31,13 +32,18 @@ export default function MovieListPage() {
         {!loading &&
           movies.map((movie) => (
             <MvCol>
-              <MvCard
-                title={movie?.show?.name}
-                image={movie?.show?.image?.medium}
-                category={movie?.show?.type}
-                year={movie?.show?.ended}
-                country={movie?.show?.network?.country?.code}
-              ></MvCard>
+              <Link
+                to={"/movie/" + movie?.show?.id}
+                style={{ textDecoration: "none" }}
+              >
+                <MvCard
+                  title={movie?.show?.name}
+                  image={movie?.show?.image?.medium}
+                  category={movie?.show?.type}
+                  year={movie?.show?.ended}
+                  country={movie?.show?.network?.country?.code}
+                ></MvCard>
+              </Link>
             </MvCol>
           ))}
       </MvRow>

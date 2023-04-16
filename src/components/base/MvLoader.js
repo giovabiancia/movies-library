@@ -10,6 +10,7 @@ export default function MvLoader({ pxSize, css }) {
     width: ${pxSize}px;
     height: ${pxSize}px;
     animation: spin 2s linear infinite;
+    border-color: rgb(99, 102, 106) rgb(243, 243, 243) rgb(243, 243, 243);
 
     @keyframes spin {
       0% {

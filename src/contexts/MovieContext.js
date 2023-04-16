@@ -10,9 +10,9 @@ export const MovieProvider = (props) => {
 
   useEffect(() => {
     //TODO prima chiamata che popola i film iniziali
-    searchMovieListByWord().then((result) => {
+    /*  searchMovieListByWord().then((result) => {
       console.log(result);
-    });
+    }); */
   }, []);
 
   return (

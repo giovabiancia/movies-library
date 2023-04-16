@@ -11,7 +11,11 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<MovieListPage />}></Route>
-            <Route path="/movie/:id" element={<MovieDetailPage />}></Route>
+            <Route
+              path="/movie/:id"
+              exact
+              element={<MovieDetailPage />}
+            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>
