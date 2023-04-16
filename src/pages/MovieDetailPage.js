@@ -5,10 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMovie } from "../hooks/useMovie";
 import MvRow from "../components/base/MvRow";
 import MvCol from "../components/base/MvCol";
-import MvFeatureList from "../components/base/MvFeatureList";
 import TimeFeature from "../components/movie/TimeFeature";
 import RatingFeature from "../components/movie/RatingFeature";
-import MvTitle from "../components/base/MvTitle";
+import DescriptionFeauture from "../components/movie/DescriptionFeauture";
+import CastTable from "../components/movie/CastTable";
 
 export default function MovieDetailPage(props) {
   const navigate = useNavigate();
@@ -60,6 +60,11 @@ export default function MovieDetailPage(props) {
           padding: 20px;
         `}
       >
+        <DescriptionFeauture
+          name={singleMovie?.name}
+          genres={singleMovie?.genres}
+          summary={singleMovie?.summary}
+        ></DescriptionFeauture>
         <MvCol
           css={`
             display: flex;
@@ -69,24 +74,7 @@ export default function MovieDetailPage(props) {
             max-width: 100%;
           `}
         >
-          <MvTitle>{singleMovie?.name}</MvTitle>
-          <MvFeatureList
-            css={`
-              font-weight: 600;
-            `}
-            features={singleMovie?.genres}
-          ></MvFeatureList>
-        </MvCol>
-        <MvCol
-          css={`
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex: 0 0 100%;
-            max-width: 100%;
-          `}
-        >
-          <div dangerouslySetInnerHTML={{ __html: singleMovie?.summary }} />
+          <CastTable id={id}></CastTable>
         </MvCol>
       </MvRow>
     </div>

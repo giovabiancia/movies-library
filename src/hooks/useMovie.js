@@ -18,7 +18,7 @@ export function useMovie() {
   };
 
   /**
-   * Research a movie list by word
+   * Get movie details
    * @param {int} id: id of the movie
    * @returns callback
    */
@@ -32,6 +32,22 @@ export function useMovie() {
 
     return axios.request(config);
   };
+  /**
+   * Get movie cast
+   * @param {int} id: id of the movie
+   * @returns callback
+   */
+  const getMovieCast = (id) => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: `http://api.tvmaze.com/shows/${id}/cast`,
 
-  return { getMovieListByWord, getMovieDetails };
+      headers: {},
+    };
+
+    return axios.request(config);
+  };
+
+  return { getMovieListByWord, getMovieDetails, getMovieCast };
 }
