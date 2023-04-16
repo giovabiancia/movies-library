@@ -13,7 +13,7 @@ const InputContainer = styled.div`
 const SearchField = () => {
   const [inputValue, setInputValue] = useState("");
 
-  const { searchMovieListByWord } = useMovie();
+  const { getMovieListByWord } = useMovie();
   const { setMovies, loading, setLoading, setError } = useContext(MovieContext);
 
   const handleInputChange = (event) => {
@@ -22,7 +22,7 @@ const SearchField = () => {
 
   const handleSearchClick = () => {
     setLoading(true);
-    searchMovieListByWord(inputValue)
+    getMovieListByWord(inputValue)
       .then((response) => {
         setLoading(false);
         if (response.status === 200) {

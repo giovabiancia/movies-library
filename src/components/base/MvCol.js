@@ -1,6 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 
-const MvCol = styled.div`
+const ColLayout = styled.div`
   box-sizing: border-box;
   padding-right: 15px;
   padding-left: 15px;
@@ -19,9 +20,16 @@ const MvCol = styled.div`
       margin-right: 0;
     }
   }
-
-
   }
 `;
 
-export default MvCol;
+const getCustomLayout = (css) =>
+  styled(ColLayout)`
+    ${css}
+  `;
+
+export default function MvCol({ css, children }) {
+  const Col = css ? getCustomLayout(css) : ColLayout;
+
+  return <Col>{children}</Col>;
+}

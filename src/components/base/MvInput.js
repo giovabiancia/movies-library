@@ -97,7 +97,8 @@ export default function MvInput({
             &:hover {
               background-color:
                 ${hasInputValue ? "#e7e7e7" : "transparent"};
-              border-radius: 50%;`}
+              border-radius: 50%;
+              `}
           onClick={onKeyPress}
           iconClass="fas fa-search"
         ></MvButtonIcon>

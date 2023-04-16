@@ -6,14 +6,9 @@ const IconWrapper = styled.button`
   width: 30px;
   cursor: "pointer";
   border: none;
-  background-color: "#d3d3d3";
+  background-color: transparent;
   transition: all 0.3s ease-in-out;
   border-radius: 50%;
-
-  &:hover {
-    background-color: "transparent";
-    border-radius: 50%;
-  }
 
   &:focus {
     outline: none;

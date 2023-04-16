@@ -6,11 +6,11 @@ export const MovieProvider = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
-  const { searchMovieListByWord } = useMovie();
+  const { getMovieListByWord } = useMovie();
 
   useEffect(() => {
     //TODO prima chiamata che popola i film iniziali
-    /*  searchMovieListByWord().then((result) => {
+    /*  getMovieListByWord().then((result) => {
       console.log(result);
     }); */
   }, []);
