@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MvSubTitle from "../base/MvSubTitle";
 import { useMovie } from "../../hooks/useMovie";
+import defaultUserImage from "../../imgs/user.png";
 
 export default function CastTable({ id }) {
   const [cast, setCast] = useState([]);
@@ -41,7 +42,11 @@ export default function CastTable({ id }) {
           <tr key={i}>
             <td>
               <img
-                src={actor?.person?.image?.medium}
+                src={
+                  actor?.person?.image?.medium
+                    ? actor?.person?.image?.medium
+                    : defaultUserImage
+                }
                 alt={actor?.person?.name}
                 className="avatar"
               ></img>
