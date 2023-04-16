@@ -1,33 +1,33 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
-export default function MvLoader({ pxSize, css }) {
-  const StyledLoader = styled.div`
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    width: ${pxSize}px;
-    height: ${pxSize}px;
-    animation: spin 2s linear infinite;
-    border-color: rgb(99, 102, 106) rgb(243, 243, 243) rgb(243, 243, 243);
+const StyledLoader = styled.div`
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: ${({ pxSize }) => `${pxSize}px`};
+  height: ${({ pxSize }) => `${pxSize}px`};
+  animation: spin 2s linear infinite;
+  border-color: rgb(99, 102, 106) rgb(243, 243, 243) rgb(243, 243, 243);
 
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
     }
-  `;
-  const CustomStyledLoader = styled(StyledLoader)`
-    ${css}
-  `;
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  ${({ styleCss }) =>
+    styleCss &&
+    css`
+      ${styleCss}
+    `}
+`;
 
-  const Loader = css ? CustomStyledLoader : StyledLoader;
-
-  return <Loader />;
+export default function MvLoader({ pxSize, css }) {
+  return <StyledLoader pxSize={pxSize} styleCss={css} />;
 }
 MvLoader.propTypes = {
   custom: PropTypes.string,

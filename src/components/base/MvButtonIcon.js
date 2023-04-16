@@ -1,5 +1,4 @@
-import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const IconWrapper = styled.button`
   height: 30px;
@@ -13,19 +12,17 @@ const IconWrapper = styled.button`
   &:focus {
     outline: none;
   }
+  ${({ styleCss }) =>
+    styleCss &&
+    css`
+      ${styleCss}
+    `}
 `;
 
-const getCustomIconWrapper = (css) =>
-  styled(IconWrapper)`
-    ${css}
-  `;
-
 export default function MvButtonIcon({ onClick, css, iconClass }) {
-  const ButtonIcon = css ? getCustomIconWrapper(css) : IconWrapper;
-
   return (
-    <ButtonIcon onClick={onClick}>
+    <IconWrapper onClick={onClick} styleCss={css}>
       <i className={iconClass}></i>
-    </ButtonIcon>
+    </IconWrapper>
   );
 }
