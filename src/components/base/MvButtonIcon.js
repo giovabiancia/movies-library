@@ -2,14 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const IconWrapper = styled.button`
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
   height: 30px;
+  width: 30px;
   cursor: "pointer";
   border: none;
   background-color: "#d3d3d3";
@@ -26,12 +20,13 @@ const IconWrapper = styled.button`
   }
 `;
 
-export default function MvButtonIcon({ onClick, css, iconClass }) {
-  const CustomIconWrapper = styled(IconWrapper)`
+const getCustomIconWrapper = (css) =>
+  styled(IconWrapper)`
     ${css}
   `;
 
-  const ButtonIcon = css ? CustomIconWrapper : IconWrapper;
+export default function MvButtonIcon({ onClick, css, iconClass }) {
+  const ButtonIcon = css ? getCustomIconWrapper(css) : IconWrapper;
 
   return (
     <ButtonIcon onClick={onClick}>

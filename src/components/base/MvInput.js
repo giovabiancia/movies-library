@@ -82,7 +82,11 @@ export default function MvInput({
         />
       ) : (
         <MvButtonIcon
-          css={`cursor:
+          css={`
+          position: absolute;
+          top: 5px;
+          right: 10px;
+          cursor:
             ${hasInputValue ? "pointer" : "default"};
             border: none;
             background-color:
