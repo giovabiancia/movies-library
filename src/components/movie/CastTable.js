@@ -11,7 +11,6 @@ export default function CastTable({ id }) {
     getMovieCast(id)
       .then((response) => {
         if (response.status === 200) {
-          console.log("movie cast", response.data);
           setCast(response.data);
         }
       })
@@ -38,8 +37,8 @@ export default function CastTable({ id }) {
         </tr>
       </thead>
       <tbody>
-        {cast.map((actor) => (
-          <tr>
+        {cast.map((actor, i) => (
+          <tr key={i}>
             <td>
               <img
                 src={actor?.person?.image?.medium}

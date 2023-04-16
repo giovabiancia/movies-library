@@ -28,7 +28,6 @@ const SearchField = () => {
       .then((response) => {
         setLoading(false);
         if (response.status === 200) {
-          console.log(response.data);
           setMovies(response.data);
         }
       })

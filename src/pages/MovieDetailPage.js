@@ -20,7 +20,6 @@ export default function MovieDetailPage(props) {
     getMovieDetails(id)
       .then((response) => {
         if (response.status === 200) {
-          console.log(response.data);
           setSingleMovie(response.data);
         }
       })
@@ -35,7 +34,7 @@ export default function MovieDetailPage(props) {
   return (
     <div>
       <MvBackgroundImageContainer imageUrl={singleMovie?.image?.medium}>
-        <div class="overlay"></div>
+        <div className="overlay"></div>
         <MvButtonIcon
           onClick={handleGoHome}
           iconClass={"fa fa-arrow-left fa-lg  "}
