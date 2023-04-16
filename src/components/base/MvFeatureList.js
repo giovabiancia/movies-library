@@ -1,27 +1,28 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
 const FeatureWrapper = styled.div`
   font-size: 10px;
   color: #888;
+  ${({ styleCss }) =>
+    styleCss &&
+    css`
+      ${styleCss}
+    `}
 `;
-
-const getCustomFeature = (css) =>
-  styled(FeatureWrapper)`
-    ${css}
-  `;
 
 export default function MvFeatureList({ features, css, slice }) {
   if (!features) return;
-  const Feature = css ? getCustomFeature(css) : FeatureWrapper;
 
   return (
     <div className="MvCenter">
       {features.map((feature, index) => (
         <React.Fragment key={index}>
           {index !== 0 && <span className="separator">{" \u00B7 "}</span>}
-          <Feature>{slice ? feature.slice(0, slice) : feature}</Feature>
+          <FeatureWrapper styleCss={css}>
+            {slice ? feature.slice(0, slice) : feature}
+          </FeatureWrapper>
         </React.Fragment>
       ))}
     </div>
