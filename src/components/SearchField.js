@@ -11,15 +11,14 @@ const InputContainer = styled.div`
 `;
 
 const SearchField = () => {
-  const [inputValue, setInputValue] = useState("");
-
   const { getMovieListByWord } = useMovie();
-  const { setMovies, loading, setLoading, setError } = useContext(MovieContext);
+  const { setMovies, loading, setLoading, setError, query, setQuery } =
+    useContext(MovieContext);
 
-  const memoizedInputValue = useMemo(() => inputValue, [inputValue]);
+  const memoizedInputValue = useMemo(() => query, [query]);
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    setQuery(event.target.value);
   };
 
   const handleSearchClick = () => {
@@ -44,7 +43,7 @@ const SearchField = () => {
         placeholder="Search"
         isLoading={loading}
         onChange={handleInputChange}
-        inputValue={inputValue}
+        inputValue={query}
         onKeyPress={() => handleSearchClick()}
       ></MvInput>
     </InputContainer>
