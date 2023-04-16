@@ -15,33 +15,6 @@ const Input = styled.input`
   transition: all 0.3s ease-in-out;
 `;
 
-const IconWrapper = styled.button`
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  cursor: ${({ isWriting }) => (isWriting ? "pointer" : "default")};
-  border: none;
-  background-color: ${({ isWriting }) =>
-    isWriting ? "transparent" : "#e7e7e7"};
-  transition: all 0.3s ease-in-out;
-  border-radius: 50%;
-
-  &:hover {
-    background-color: ${({ isWriting }) =>
-      isWriting ? "#e7e7e7" : "transparent"};
-    border-radius: 50%;
-  }
-
-  &:focus {
-    outline: none;
-  }
-`;
-
 export default function MvInput({
   inputValue,
   onChange,

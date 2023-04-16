@@ -17,3 +17,31 @@ html{
   min-height: 100vh;
   background-color: #F2F2F2
 }
+p{
+  font-size: 14px;
+  color:#888
+}
+.separator{
+  margin-left:3px;
+  margin-right:3px;
+  color:#888
+}
+.MvCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Imposta un overlay nero con opacità al 50% */
+  z-index: 1; /* Imposta lo z-index sopra il contenuto del div */
+  pointer-events: none;
+}

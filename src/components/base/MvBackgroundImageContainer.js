@@ -7,6 +7,7 @@ const FullWidthContainer = styled.div`
   background-position: center;
   width: 100%;
   height: 30vh;
+  position: relative;
 `;
 
 const MvBackgroundImageContainer = ({ imageUrl, children }) => {

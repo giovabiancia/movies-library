@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import styled from "styled-components";
 import MvInput from "./base/MvInput";
 import { useMovie } from "../hooks/useMovie";
@@ -16,13 +16,15 @@ const SearchField = () => {
   const { getMovieListByWord } = useMovie();
   const { setMovies, loading, setLoading, setError } = useContext(MovieContext);
 
+  const memoizedInputValue = useMemo(() => inputValue, [inputValue]);
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleSearchClick = () => {
     setLoading(true);
-    getMovieListByWord(inputValue)
+    getMovieListByWord(memoizedInputValue)
       .then((response) => {
         setLoading(false);
         if (response.status === 200) {
@@ -43,7 +45,7 @@ const SearchField = () => {
         placeholder="Search"
         isLoading={loading}
         onChange={handleInputChange}
-        value={inputValue}
+        inputValue={inputValue}
         onKeyPress={() => handleSearchClick()}
       ></MvInput>
     </InputContainer>

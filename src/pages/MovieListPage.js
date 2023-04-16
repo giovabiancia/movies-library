@@ -16,22 +16,26 @@ export default function MovieListPage() {
         <SearchField></SearchField>
       </MvNavBar>
 
-      <MvRow style={{ marginTop: 100 }}>
+      <MvRow
+        css={`
+          margin-top: 100px;
+        `}
+      >
         {loading &&
           (() => {
             const skeletonCards = [];
             for (let i = 0; i < 6; i++) {
               skeletonCards.push(
-                <MvCol>
-                  <MvCardSkeleton key={i} />
+                <MvCol key={i}>
+                  <MvCardSkeleton />
                 </MvCol>
               );
             }
             return skeletonCards;
           })()}
         {!loading &&
-          movies.map((movie) => (
-            <MvCol>
+          movies.map((movie, i) => (
+            <MvCol key={i}>
               <Link
                 to={"/movie/" + movie?.show?.id}
                 style={{ textDecoration: "none" }}
