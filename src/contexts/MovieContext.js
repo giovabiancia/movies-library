@@ -3,7 +3,7 @@ import { useMovie } from "../hooks/useMovie";
 export const MovieContext = createContext();
 
 export const MovieProvider = (props) => {
-  const [query, setQuery] = useState(false);
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
